@@ -1,0 +1,84 @@
+ <div class="section-top-border">
+		<h3 class="mb-30 set-color-font">Products Management</h3>
+		<div class="progress-table-wrap">
+							<div class="progress-table">
+								<table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Department</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Phone</th>                                                                             
+											<th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+										{{#each departs}}
+                                        <tr>
+                                            <th scope="row">{{this.ID}}</th>
+                                            <td>{{this.department}}</td>
+                                            <td>{{this.address}}</td>
+                                            <td>{{this.phone}}</td>                                                                
+											<td class="text-end">												
+												<a href="/admin/manage-depart/{{this._id}}/edit" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i>Edit</a>
+												<a href="#" type="button" class="btn btn-light btn-small" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-depart-modal"><i class="bi bi-person-x"></i> Delete</a>
+											</td>
+                                        </tr>
+										{{/each}}
+
+                                    </tbody>
+								</table>
+			                </div>
+		                </div>	
+
+                        {{!-- Confirm delete depart--}}
+<div id="delete-depart-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning!!!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Delete this</p>
+        <p>Are you sure about this???</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-depart" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-depart-form" method="POST"></form>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+        var departId;
+        var deleteForm = document.forms['delete-depart-form'];
+        var btnDeleteDepart = document.getElementById('btn-delete-depart');
+
+        // When dialog confirm clicked
+        var exampleModal = document.getElementById('delete-depart-modal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            departId = button.getAttribute('data-id')
+            
+        });
+
+        btnDeleteDepart.onclick = function() {
+            deleteForm.action = '/admin/manage-depart/' + departId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+
+  });
+
+  
+</script>

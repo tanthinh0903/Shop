@@ -1,0 +1,36 @@
+
+    <div class="section-top-border">
+		<h3 class="mb-30 set-color-font">Add products</h3>
+		<div class="progress-table-wrap">
+			<div class="progress-table padding-form-add">
+                <form method="POST" action="/admin/store-products">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="pname" name="ID" placeholder="SPxxx">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="pname" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="price" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Quantity</label>
+                        <input type="text" class="form-control" id="price" name="quantity">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="5"></textarea>
+                    </div>
+                   <label for="basic-url" class="form-label">Your Product Image URL</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">https://github.com/PhucVinhTu/ECOMMERCR-MAIN/tree/main/src/public/img/{name image}.jpg/png?raw=true</span>
+                        <input type="text" class="form-control"  value="{{products.image}}" id="basic-url" name="image" aria-describedby="basic-addon3">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+			</div>
+		</div>
+	</div>		

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script defer src="/js/script.js"></script>
+
+</head>
+<body>
+    <header id="header" id="home">
+	<div class="container">
+	  <div class="row align-items-center justify-content-between d-flex">
+	     <div id="logo">
+	      <a href="/"><img src="/img/logo.png" alt="" title="" /></a>
+		  </div>
+			<nav id="nav-menu-container">
+				<ul class="nav-menu">
+				  <li class="menu-active"><a href="/">Home</a></li>
+				  
+				</ul>
+			</nav><!-- #nav-menu-container -->		    		
+		</div>
+	</div>
+</header><!-- #header -->
+
+<section class="generic-banner relative">	
+	<div class="container">
+		<div class="row height align-items-center justify-content-center">
+			<div class="col-lg-10">
+				<div class="generic-banner-content">
+					
+				</div>							
+			</div>
+		</div>
+	</div>			
+</section>		
+<!-- End banner Area -->
+
+
+    <main class="container">
+ 
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+    <img data-image="red" class="active" src="{{products.image}}" alt="">
+  </div>
+ 
+ 
+  <!-- Right Column -->
+  <div class="right-column">
+ 
+    <!-- Product Description -->
+    <div class="product-description">
+      <h1>{{products.name}}</h1>
+      <p>{{products.description}}</p>
+    </div>
+ 
+    <!-- Product Pricing -->
+    <div class="product-price">
+      <span>${{products.price}}</span>
+      <a href="/add-to-cart/{{products._id}}" class="cart-btn">Add to cart</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

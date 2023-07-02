@@ -1,0 +1,124 @@
+
+    <div class="section-top-border">
+						<h3 class="mb-30 set-color-font">Staff Management</h3>
+						<div class="progress-table-wrap">
+							<div class="progress-table">
+								<table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Full Name</th>
+                                            <th scope="col">Shift</th>
+											<th scope="col">Department</th>
+                                            <th scope="col">Basic Salary</th>
+                                            <th scope="col">Phone Number</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Birthday</th>
+                                            <th scope="col">Address</th>
+											<th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+										{{#each staff}}
+                                        <tr>
+                                            <th scope="row">{{this.ID}}</th>
+                                            <td>{{this.name}}</td>
+                                            <td>{{this.shift}}</td>
+											<td>{{this.depart}}</td>
+                                            <td>{{this.salary}} VND</td>
+                                            <td>{{this.phone}}</td>
+                                            <td>{{this.gender}}</td>
+                                            <td>{{this.birthday}}</td>
+                                            <td>{{this.address}}</td>
+											<td class="text-end">
+												<a href="/admin/manage-staff/{{this._id}}/edit" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i>Edit</a>
+												<a href="#" type="button" class="btn btn-light btn-small" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-staff-modal"><i class="bi bi-person-x"></i> Delete</a>
+											</td>
+                                        </tr>
+										{{/each}}
+
+                                    </tbody>
+								</table>
+	
+							</div>
+						</div>
+					</div>
+					<div class="section-top-border">
+						<h3 class="set-color-font">Image Gallery</h3>
+						<div class="row gallery-item">
+							<div class="col-md-4">
+								<a href="/img/img2.ipg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img2.jpg);"></div></a>
+							</div>
+							<div class="col-md-4">
+								<a href="/img/img3.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img3.jpg);"></div></a>
+							</div>
+							<div class="col-md-4">
+								<a href="/img/img4.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img4.jpg);"></div></a>
+							</div>
+							<div class="col-md-6">
+								<a href="/img/img5.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img5.jpg);"></div></a>
+							</div>
+							<div class="col-md-6">
+								<a href="/img/img6.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img6.jpg);"></div></a>
+							</div>
+							<div class="col-md-4">
+								<a href="/img/img7.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img7.jpg);"></div></a>
+							</div>
+							<div class="col-md-4">
+								<a href="/img/img8.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img8.jpg);"></div></a>
+							</div>
+							<div class="col-md-4">
+								<a href="/img/img9.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(/img/img9.jpg);"></div></a>
+							</div>
+						</div>
+					</div>
+
+{{!-- Confirm delete staff --}}
+<div id="delete-staff-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning!!!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Delete this</p>
+        <p>Are you sure about this???</p>
+      </div>
+      <div class="modal-footer">
+		<button id="btn-delete-staff" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-staff-form" method="POST"></form>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+        var staffId;
+        var deleteForm = document.forms['delete-staff-form'];
+        var btnDeleteStaff = document.getElementById('btn-delete-staff');
+
+        // When dialog confirm clicked
+        var exampleModal = document.getElementById('delete-staff-modal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            staffId = button.getAttribute('data-id')
+            
+        });
+
+        btnDeleteStaff.onclick = function() {
+            deleteForm.action = '/admin/manage-staff/' + staffId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+
+  });
+
+</script>

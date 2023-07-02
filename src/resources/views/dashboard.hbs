@@ -1,0 +1,84 @@
+ <div class="section-top-border">
+		<h3 class="mb-30 set-color-font">Products Management</h3>
+		<div class="progress-table-wrap">
+							<div class="progress-table">
+								<table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Department</th>
+                                            <th scope="col">Salesman</th>
+                                            <th scope="col">Total Bill</th>
+                                            <th scope="col">Action</th>                                      
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+										{{#each bill}}
+                                        <tr>
+                                            <th scope="row">{{this.ID}}</th>
+                                            <td>{{this.department}}</td>
+                                             <td>{{this.salesman}}</td>
+                                            <td>${{this.total}}</td>                                                                                      
+											<td class="text-end">
+												<a href="#" type="button" class="btn btn-light btn-small" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-bill-modal"><i class="bi bi-person-x"></i> Delete</a>
+											</td>
+                                        </tr>
+										{{/each}}
+
+                                    </tbody>
+								</table>
+			                </div>
+		                </div>				
+	</div>
+
+{{!-- Confirm delete depart--}}
+<div id="delete-bill-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning!!!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Delete this</p>
+        <p>Are you sure about this???</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-bill" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-bill-form" method="POST"></form>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+
+        var billId;
+        var deleteForm = document.forms['delete-bill-form'];
+        var btnDeleteBill = document.getElementById('btn-delete-bill');
+
+        // When dialog confirm clicked
+        var exampleModal = document.getElementById('delete-bill-modal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            billId = button.getAttribute('data-id')
+            
+        });
+
+        btnDeleteBill.onclick = function() {
+            deleteForm.action = '/admin/' + billId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+
+  });
+
+  
+</script>

@@ -1,0 +1,26 @@
+ <div class="section-top-border">
+		<h3 class="mb-30 set-color-font">Edit department</h3>
+		<div class="progress-table-wrap">
+			<div class="progress-table padding-form-add">
+                <form method="POST" action="/admin/manage-depart/{{depart._id}}?_method=PUT">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="DPxxx" value="{{depart.ID}}" name="ID">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Department</label>
+                        <input type="text" class="form-control" id="inputAddress2" value="{{depart.department}}" name="department" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="inputAddress2" value="{{depart.address}}" name="address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="inputAddress2" value="{{depart.phone}}" name="phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+			</div>
+		</div>
+	</div>		
